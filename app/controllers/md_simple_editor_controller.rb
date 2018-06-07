@@ -12,7 +12,9 @@ class MdSimpleEditorController < ApplicationController
 		render 'md_simple_editor/add_video_link', layout: false
 	end
 
-	def add_video_link
-
+	def add_midia_link
+		@partial = params[:midia_class].downcase.pluralize + '/modal_form'
+		@resource = params[:midia_class].constantize.new
+		render 'md_simple_editor/add_midia_link', layout: false
 	end
 end
