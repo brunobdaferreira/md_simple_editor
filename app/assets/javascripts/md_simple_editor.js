@@ -12,23 +12,26 @@
       if (option.length !== 0) {
         option = option[0].toString();
         if(option === 'md_h1'){
-          text = "# Your Title here";
+          text = "# ";
         } else if(option === 'md_h2') {
-          text = "## Your Title here";
+          text = "## ";
         } else if(option === 'md_h3') {
-          text = "### Your Title here";
+          text = "### ";
         } else if(option === 'md_h4') {
-          text = "#### Your Title here";
+          text = "#### ";
         } else if(option === 'md_h5') {
-          text = "##### Your Title here";
+          text = "##### ";
         } else if(option === 'md_italic') {
-          text = "_Your italic text here_";
+          text = "_Seu texto itálico aqui_";
         } else if(option === 'md_bold') {
-          text = "*Your italic text here*";
+          text = "*Seu texto negrito aqui*";
         } else if(option === 'md_link') {
-          text = "\n[This is a link](http://google.com)\n";
+          text = "[Texto do link](Endereço do link)";
         } else if(option === 'md_camera-retro') {
           text = "\n![Alt](https://www.google.com.co/images/srpr/logo11w.png)\n";
+        } else if(option === 'md_video-link') {
+          text = "";
+          add_video_link();
         } else {
           text = "";
         }
@@ -98,6 +101,22 @@
       return preview();
     });
   };
+
+  add_video_link = function(){
+    $.get('/md_simple_editor/add_video_link_modal', function(data){
+      $(data).modal('show');
+    });
+  };
+
+  $(document).on('click', '.btn-add-link-video', function(){
+    var id_video = $(this).closest('form').find("#video_id").val();
+    if(id_video !== "") {
+      var link = 'https://www.youtube.com/embed/' + id_video;
+      var textareafield = $('#md-editor #md-text textarea');
+      $(this).closest('.modal').modal('hide');
+      return insertAtCaret(textareafield.attr('id'), link);
+    }
+  });
 
   $(document).on('turbolinks:load page:load ready', initializeEditor);
 

@@ -1,7 +1,6 @@
 class MdBuilder
 
   include ActionView::Helpers
-  include FontAwesome
   attr_accessor :class_attr, :output_buffer
 
   def initialize(class_attr='')
@@ -9,6 +8,6 @@ class MdBuilder
   end
 
   def default_class
-    "btn btn-default #{class_attr}"
+    "btn btn-outline-dark #{class_attr}"
   end
 end

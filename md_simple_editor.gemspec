@@ -21,7 +21,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'bundler', '~> 1.3'
   spec.add_development_dependency 'rake'
 
-  spec.add_runtime_dependency 'font-awesome-rails'
+  spec.add_runtime_dependency 'font-awesome-sass'
   spec.add_runtime_dependency 'redcarpet', '~> 3.4'
   spec.add_runtime_dependency 'bootstrap-sass', '~> 3.3.7'
 end
