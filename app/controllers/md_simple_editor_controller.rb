@@ -1,12 +1,11 @@
 class MdSimpleEditorController < ApplicationController
-	respond_to :html, :js
+	protect_from_forgery with: :null_session
+	respond_to :html
 
 	def preview
-		Rails.logger.debug '******************'
-		Rails.logger.debug params['md']
 		options = { autolink: true, space_after_headers: true, fenced_code_blocks: true }
-		html = Redcarpet::Markdown.new(MarkdownRendererWithSpecialLinks, options).render(params['md']).html_safe
-		render html: html
+		@html = Redcarpet::Markdown.new(MarkdownRendererWithSpecialLinks, options).render(params['md'])
+		render 'md_simple_editor/preview', layout: false
 	end
 
 	def add_video_link_modal

@@ -24,7 +24,7 @@
         } else if(option === 'md_italic') {
           text = "_Seu texto itálico aqui_";
         } else if(option === 'md_bold') {
-          text = "*Seu texto negrito aqui*";
+          text = "**Seu texto negrito aqui**";
         } else if(option === 'md_link') {
           text = "[Texto do link](Endereço do link)";
         } else if(option === 'md_camera-retro') {
@@ -51,10 +51,7 @@
       return $.post('/md_simple_editor/preview', {
         md: $('#md-text textarea').val()
       }, function(data) {
-        $('.preview_md').text('Editor');
-        $('#md-text').attr('hidden', 'true');
-        $('.preview-panel').removeAttr('hidden');
-        return $('#md-preview').html(data);
+        $(data).modal('show');
       });
     }
   };

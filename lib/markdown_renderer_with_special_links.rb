@@ -1,5 +1,9 @@
 # /lib/helpers/markdown_renderer_with_special_links.rb
 class MarkdownRendererWithSpecialLinks < Redcarpet::Render::HTML
+  def link(link, _title, alt_text)
+    "<a target=\"_blank\" href=\"#{link}\">#{alt_text}</a>"
+  end
+
   def autolink(link, link_type)
     case link_type
     when :url then url_link(link)
@@ -19,7 +23,7 @@ class MarkdownRendererWithSpecialLinks < Redcarpet::Render::HTML
   end
 
   def normal_link(link)
-    "<a href=\"#{link}\">#{link}</a>"
+    "<a target=\"_blank\" href=\"#{link}\">#{link}</a>"
   end
 
   def email_link(email)
