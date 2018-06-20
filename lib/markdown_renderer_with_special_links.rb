@@ -1,5 +1,18 @@
 # /lib/helpers/markdown_renderer_with_special_links.rb
 class MarkdownRendererWithSpecialLinks < Redcarpet::Render::HTML
+  include Rails.application.routes.url_helpers
+  include ApplicationHelper
+  include ActionView::Helpers::AssetTagHelper
+
+  def image(link, _title, content)
+    return render_image(link, _title, content) if respond_to?(:render_image) && numeric?(link)
+    "<img alt='#{content}' class='img-fluid' src='#{link}'>"
+  end
+
+  def numeric?(value)
+    !value.to_s.match(/\A[+-]?\d+?(\.\d+)?\Z/).nil?
+  end
+
   def link(link, _title, alt_text)
     "<a target=\"_blank\" href=\"#{link}\">#{alt_text}</a>"
   end
