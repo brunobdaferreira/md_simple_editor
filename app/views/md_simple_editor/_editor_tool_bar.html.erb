@@ -22,5 +22,5 @@
       </div>
     </div>
   </div>
-  <%= form.text_area field, class: 'form-control markdown-textarea', rows: '30' %>
+  <%= form.text_area field, class: 'form-control markdown-textarea', rows: options[:rows] || 30 %>
 </div>
