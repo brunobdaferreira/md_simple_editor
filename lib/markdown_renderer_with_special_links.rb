@@ -32,7 +32,10 @@ class MarkdownRendererWithSpecialLinks < Redcarpet::Render::HTML
   end
 
   def youtube_link(link)
-    "<iframe width=\"560\" height=\"315\" src=\"#{link}\" frameborder=\"0\" allowfullscreen></iframe>"
+    conteudo = "<p class='embed-responsive embed-responsive-16by9'>"
+    conteudo += "<iframe width='560' height='315' src='#{link}' frameborder='0' class='embed-responsive-item' allowfullscreen></iframe>"
+    conteudo += '</p>'
+    conteudo
   end
 
   def normal_link(link)
