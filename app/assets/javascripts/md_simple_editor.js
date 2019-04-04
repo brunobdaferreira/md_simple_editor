@@ -31,7 +31,13 @@
     var conteudo = '![' + alt + ' ' + alt +'](' + link + ')';
     adiciona_conteudo(textArea, conteudo);
     $(document).find('.modal').modal('hide');
+  };
 
+  add_galery_link = function(alt, link){
+    var textArea = $(document).find('.markdown-textarea');
+    var conteudo = '![' + alt + ' ' + alt +'](galery:' + link + ')';
+    adiciona_conteudo(textArea, conteudo);
+    $(document).find('.modal').modal('hide');
   };
 
   $(document).on('click', '.markdown-tool', function(){
